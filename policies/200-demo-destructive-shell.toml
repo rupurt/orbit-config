@@ -1,0 +1,20 @@
+# Demo admin policy.
+#
+# This file shows a higher-priority deny rule for destructive shell commands.
+# It is intentionally more restrictive than the broad `git` allow rule in
+# `100-demo-git-admin.toml`.
+
+[[rule]]
+toolName = "run_shell_command"
+commandPrefix = [
+  "rm -rf",
+  "sudo rm -rf",
+  "git reset --hard",
+  "git clean -fd",
+  "dd if=",
+  "mkfs",
+  "format "
+]
+decision = "deny"
+priority = 950
+denyMessage = "Demo admin policy: destructive shell commands are blocked."

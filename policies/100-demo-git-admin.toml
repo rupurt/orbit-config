@@ -1,0 +1,18 @@
+# Demo admin policy.
+#
+# These rules are intended to live in the Gemini CLI admin policy directory, so
+# they override user and default TOML policies by tier. Within this admin tier,
+# the higher numeric `priority` wins.
+
+[[rule]]
+toolName = "run_shell_command"
+commandPrefix = "git"
+decision = "allow"
+priority = 100
+
+[[rule]]
+toolName = "run_shell_command"
+commandPrefix = "git push"
+decision = "ask_user"
+priority = 900
+
